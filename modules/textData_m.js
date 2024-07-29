@@ -1,6 +1,6 @@
 const fs = require('fs');
 const parse = require('node-html-parser').parse;
-const serv = require('../server');
+const servText = require('../server');
 const { error } = require('console');
 
 const adressArr = fs.readFileSync('adress.txt').toString().split('\r\n');
@@ -16,10 +16,9 @@ function textData() {
     const arr_km = [18, 20, 14, 24, 18, 20, 12, 18, 14, 20, 16, 28, 16, 26, 18, 20, 12, 16, 20, 14, 20, 22, 28, 20, 16, 8, 8, 6, 4, 2, 10, 4, 6, 8, 8, 10];
     const arr_km_plus = [19, 21, 15, 25, 19, 21, 13, 19, 15, 21, 17, 29, 17, 27, 19, 21, 13, 17, 21, 15, 21, 23, 29, 21, 17, 9, 9, 7, 5, 3, 11, 5, 7, 9, 9, 11];
 
-    const m_adress = serv.reqQuery.m_adress,
-        z_adress = serv.reqQuery.z_adress,
-        z_time = serv.reqQuery.refillTime,
-        KM = +serv.reqQuery.km;
+    const m_adress = servText.reqQuery.m_adress,
+        z_adress = servText.reqQuery.z_adress,
+        KM = +servText.reqQuery.km;
 
     let sum_km = 0,
         i = 0,
@@ -36,14 +35,17 @@ function textData() {
         case 'Девятаева 15а':
             sum_km += 8
             arrStrongAdress.push('Пушкина8 - Девятаева15А=4<br>Девятаева15А - Пушкина8=4')
+            arrStrongKm.push(8)
             break
         case 'Сары Садыковой 65':
             sum_km += 8
             arrStrongAdress.push('Пушкина8 - СарыСадыковой65=4<br>СарыСадыковой65 - Пушкина8=4')
+            arrStrongKm.push(8)
             break
         case 'Отрадная 5а':
             sum_km += 14
             arrStrongAdress.push('Пушкина8 - Отрадная5а=7<br>Отрадная5а - Пушкина8=7')
+            arrStrongKm.push(14)
             break
     }
 
